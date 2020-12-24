@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cg.emppayroll.dto.EmployeePayrollDTO;
 import com.cg.emppayroll.exceptions.DetailsNotProvidedExceptions;
+import com.cg.emppayroll.exceptions.EmployeePayrollException;
 import com.cg.emppayroll.exceptions.UserNotFound;
 import com.cg.emppayroll.model.EmployeePayrollData;
 import com.cg.emppayroll.repository.EmployeePayrollRepository;
@@ -35,7 +36,7 @@ public class EmployeePayrollService implements IEmployeePayrollService{
 			EmployeePayrollData employeePayroll = new EmployeePayrollData(employeePayrollDTO.getName(), employeePayrollDTO.getBasicPay(),employeePayrollDTO.getGender(),employeePayrollDTO.getStartDate());
 			return new EmployeePayrollDTO(employeePayrollRepository.save(employeePayroll));
 		}
-		throw new DetailsNotProvidedExceptions("Invalid Data");
+		throw new EmployeePayrollException("ID incorrect.");
 	}
 	
 	@Override
