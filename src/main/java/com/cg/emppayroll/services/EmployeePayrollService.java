@@ -26,8 +26,8 @@ public class EmployeePayrollService implements IEmployeePayrollService{
 	
 	@Override
 	public EmployeePayrollDTO createUser(EmployeePayrollDTO employeePayrollDTO) {
-		if(Objects.nonNull(employeePayrollDTO.getName()) && Objects.nonNull(employeePayrollDTO.getBasic_pay())){
-			EmployeePayrollData employeePayroll = new EmployeePayrollData(employeePayrollDTO.getName(), employeePayrollDTO.getBasic_pay());
+		if(Objects.nonNull(employeePayrollDTO.getName()) && Objects.nonNull(employeePayrollDTO.getBasicPay())){
+			EmployeePayrollData employeePayroll = new EmployeePayrollData(employeePayrollDTO.getName(), employeePayrollDTO.getBasicPay(),employeePayrollDTO.getGender(),employeePayrollDTO.getStartDate());
 			return new EmployeePayrollDTO(employeePayrollRepository.save(employeePayroll));
 		}
 		throw new DetailsNotProvidedExceptions("Invalid Data");
@@ -39,8 +39,8 @@ public class EmployeePayrollService implements IEmployeePayrollService{
 			if(Objects.nonNull(employeePayrollDTO.getName())) {
 				employeePayroll.setName(employeePayrollDTO.getName());
 			}
-			if(Objects.nonNull(employeePayrollDTO.getBasic_pay())) {
-				employeePayroll.setBasic_pay(employeePayrollDTO.getBasic_pay());
+			if(Objects.nonNull(employeePayrollDTO.getBasicPay())) {
+				employeePayroll.setBasicPay(employeePayrollDTO.getBasicPay());
 			}
 			return new EmployeePayrollDTO(employeePayrollRepository.save(employeePayroll));
 		}).orElseThrow(() -> new UserNotFound("UserNotFound"));
