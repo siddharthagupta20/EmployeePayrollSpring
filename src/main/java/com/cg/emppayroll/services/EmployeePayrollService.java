@@ -1,14 +1,11 @@
 package com.cg.emppayroll.services;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.cg.emppayroll.dto.EmployeePayrollDTO;
 import com.cg.emppayroll.exceptions.DetailsNotProvidedExceptions;
 import com.cg.emppayroll.exceptions.UserNotFound;
