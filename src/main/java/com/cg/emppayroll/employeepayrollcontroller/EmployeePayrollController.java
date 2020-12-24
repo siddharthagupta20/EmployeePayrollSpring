@@ -2,9 +2,12 @@ package com.cg.emppayroll.employeepayrollcontroller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +44,7 @@ public class EmployeePayrollController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<EmployeePayrollDTO> createUser(@RequestBody EmployeePayrollDTO user){
+	public ResponseEntity<EmployeePayrollDTO> createUser(@Valid @RequestBody EmployeePayrollDTO user){
 		log.debug("Creating user at controller.");
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(employeePayrollService.createUser(user));
@@ -51,7 +54,7 @@ public class EmployeePayrollController {
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<EmployeePayrollDTO> updateUser(@RequestBody EmployeePayrollDTO user){
+	public ResponseEntity<EmployeePayrollDTO> updateUser(@Valid @RequestBody EmployeePayrollDTO user){
 		log.debug("Updating user at controller.");
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(employeePayrollService.updateUser(user));
