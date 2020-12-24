@@ -20,8 +20,11 @@ import com.cg.emppayroll.exceptions.UserNotFound;
 import com.cg.emppayroll.model.EmployeePayrollData;
 import com.cg.emppayroll.services.IEmployeePayrollService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/employeepayrollservice")
+@Slf4j
 public class EmployeePayrollController {
 	
 	@Autowired
@@ -29,6 +32,7 @@ public class EmployeePayrollController {
 	
 	@GetMapping("/get")
 	public ResponseEntity<List<EmployeePayrollDTO>> getAllUser(){
+		log.debug("Getting data of all users from controller.");
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(employeePayrollService.getAllUser());
 		}catch(Exception e){
@@ -38,6 +42,7 @@ public class EmployeePayrollController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<EmployeePayrollDTO> createUser(@RequestBody EmployeePayrollDTO user){
+		log.debug("Creating user at controller.");
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(employeePayrollService.createUser(user));
 		}catch(UserNotFound e) {
@@ -47,6 +52,7 @@ public class EmployeePayrollController {
 	
 	@PutMapping("/update")
 	public ResponseEntity<EmployeePayrollDTO> updateUser(@RequestBody EmployeePayrollDTO user){
+		log.debug("Updating user at controller.");
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(employeePayrollService.updateUser(user));
 		}catch(UserNotFound e) {
@@ -56,6 +62,7 @@ public class EmployeePayrollController {
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<EmployeePayrollDTO> deleteUser(@PathVariable("id")Long id){
+		log.debug("Deleting user with id {} at controller."+id);
 		try {
 			return ResponseEntity.status(HttpStatus.ACCEPTED).body(employeePayrollService.deleteUser(id));
 		}catch(UserNotFound e) {
